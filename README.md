@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Air Mouse</title>
-</head>
-<body>
-
 <h1>Air Mouse</h1>
 
 <p>This repository contains the source code and documentation for the <strong>Air Mouse</strong>. It allows you to control your computer's mouse cursor using an MPU6050 gyroscope and accelerometer sensor connected to an Arduino. The Arduino reads sensor data and sends it via the serial port to a Python program that translates the data into mouse movements on the screen.
