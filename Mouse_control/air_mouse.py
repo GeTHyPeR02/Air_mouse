@@ -1,15 +1,26 @@
 import serial
-import time
 import pyautogui
 
-Arduino =serial.Serial("/dev/ttyACM0",19200)
+ser = serial.Serial('/dev/ttyACM0', 19200, timeout=1)
 
-while 1:
-  data  =  str(Arduino.readline().decode('ascii'))   #read the data
-  #time.sleep(0.1)
-  print("ARDUINO::: " + data)
-  if ";" not in data:
-    continue
-  roll, pitch = data.split(";")
-  print(roll)
-  print(pitch)
+while True:
+    try:
+        # Read a line from the serial port
+        data = ser.readline().decode().strip()
+        
+        roll, pitch = data.split(';')
+
+        print("Roll: " + roll + "   Pitch: " + pitch)
+
+        roll = float(roll)
+        pitch = float(pitch)
+        
+        pyautogui.move(roll*3, pitch*(-2))
+        
+    
+    except KeyboardInterrupt:
+        print("Program terminated by user.")
+        break
+    
+    except Exception as e:
+        print(f"Error: {str(e)}")

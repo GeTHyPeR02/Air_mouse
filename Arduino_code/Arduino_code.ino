@@ -37,7 +37,7 @@ void loop() {
   currentTime = millis();            // Current time actual time read
   elapsedTime = (currentTime - previousTime) / 1000; // Divide by 1000 to get seconds
   
-  Wire.beginTransmission(MP U);
+  Wire.beginTransmission(MPU);
   Wire.write(0x43); // Gyro data first register address 0x43
   Wire.endTransmission(false);
   Wire.requestFrom(MPU, 6, true);
@@ -58,7 +58,8 @@ void loop() {
   roll = 0.96 * gyroAngleX + 0.04 * accAngleX;
   pitch = 0.96 * gyroAngleY + 0.04 * accAngleY;
   
-  Serial.print(roll);
-  Serial.print("/");
-  Serial.print(pitch);
+  Serial.print(String(roll, 2));
+  Serial.print(";");
+  Serial.println(String(pitch, 2));
+  delay(100);
 }
